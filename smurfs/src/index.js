@@ -11,8 +11,8 @@ import thunk from 'redux-thunk';
 const store = createStore(
 	combineReducers({
 		smurfs: reducers.smurfsReducer,
+		addSmurfForm: reducers.smurfFormReducer
 	}),
-	{},
 	compose(
 		applyMiddleware(thunk),
 		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
