@@ -1,5 +1,31 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+* {
+	box-sizing: border-box;
+}
+label, input {
+	display: block;
+}
+label, button {
+	margin: 15px 0 5px;
+}
+.App {
+	padding: 0 30px;
+}
+.smurfs {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+}
+
+.smurf {
+	width: 100%;
+	padding: 30px;
+	margin: 15px 0;
+	max-width: calc(50% - 15px);
+	flex-basis: calc(50% - 15px);
+	background-color: lightgray;
 }
