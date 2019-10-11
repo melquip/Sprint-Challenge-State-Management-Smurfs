@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import useActions from '../helpers/useActions';
 import * as actionCreators from '../state/actionCreators';
 import "./App.css";
+import Form from "./Form";
+
 export default function App() {
 	const { smurfs } = useSelector(state => state);
 	const [ getSmurfs ] = useActions([actionCreators.getSmurfs])
@@ -17,8 +19,9 @@ export default function App() {
 			<div>Start inside of your `src/index.js` file!</div>
 			<div>Have fun!</div>
 			{
-				smurfs ? JSON.stringify(smurfs) : "No Smurfs"
+				smurfs.length ? JSON.stringify(smurfs) : "No Smurfs"
 			}
+			<Form />
 		</div>
 	);
 }
