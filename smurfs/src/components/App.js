@@ -1,7 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import useActions from '../helpers/useActions';
-import * as actionCreators from '../state/actionCreators';
 import Smurfs from "./Smurfs";
 import Form from "./Form";
 

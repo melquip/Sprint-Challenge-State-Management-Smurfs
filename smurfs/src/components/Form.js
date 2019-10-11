@@ -5,24 +5,26 @@ import * as actionCreators from '../state/actionCreators';
 
 export default function Form() {
 	const { addSmurfForm } = useSelector(state => state);
-	const [postSmurf, onInputChange] = useActions([actionCreators.postSmurf, actionCreators.onInputChange])
+	const [postSmurf, putSmurf, onInputChange] = useActions([
+		actionCreators.postSmurf, actionCreators.putSmurf, actionCreators.onInputChange])
 	const onFormSubmit = (e) => {
 		e.preventDefault();
-		postSmurf(
-			Object.values(e.target)
-				.reduce((fields, field) => {
-					if (field.name) fields[field.name] = field.value;
-					if (field.name === 'height') fields[field.name] += 'cm';
-					return fields;
-				}, {})
-		);
+		const form = Object.values(e.target)
+			.reduce((fields, field) => {
+				if (field.name) fields[field.name] = field.value;
+				if (field.name === 'height') fields[field.name] += 'cm';
+				return fields;
+			}, {});
+		addSmurfForm.id === null ?
+			postSmurf(form) :
+			putSmurf({ ...form, id: addSmurfForm.id });
 	}
 	const changeInput = e => {
 		onInputChange({ name: e.target.name, value: e.target.value, })
 	}
 	return (
 		<>
-			<h1>Add a smurf!</h1>
+			<h1>Add/Edit a smurf!</h1>
 			<form onSubmit={onFormSubmit}>
 				<label htmlFor="name">Name:</label>
 				<input
@@ -50,7 +52,7 @@ export default function Form() {
 					value={addSmurfForm.height}
 					onChange={changeInput}
 				/>
-				<button type="submit">Add smurf</button>
+				<button type="submit">Smurf it</button>
 			</form>
 		</>
 	);

@@ -5,18 +5,24 @@ export const smurfsReducer = (smurfList = initialSmurfs, action) => {
 		case types.SET_SMURFS:
 			return action.payload;
 		case types.ADD_SMURF:
-			return smurfList.concat(action.payload);
+			return [...smurfList, action.payload];
 		default:
 			return smurfList;
 	}
 }
-const initialForm = {
+export const initialForm = {
+	id: null,
 	name: "",
 	age: "",
 	height: "",
 };
 export const smurfFormReducer = (form = initialForm, action) => {
 	switch (action.type) {
+		case types.EDIT_SMURF:
+			return {
+				...form,
+				...action.payload
+			};
 		case types.ON_INPUT_CHANGE:
 			return {
 				...form,
